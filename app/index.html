@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello, Bus ! 全台公車動態時刻查詢網</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="./assets/style/all.css">
+  </head>
+
+  <body class="position-relative overflow-hidden">
+    <!-- 導覽列 -->
+    <nav class="index_navbar navbar navbar-expand-lg fixed-top | d-none d-lg-block | py-4 py-lg-5 | align-items-start align-items-lg-center">
+        <div class="container | flex-row-reverse flex-lg-row">
+            <!-- Hello, Bus !-logo -->
+            <a class="navbar-brand mx-0 mx-lg-0" href="./index.html">
+                <img class="d-none d-lg-block" src="./assets/images/HelloBus_light.png" alt="Hello, Bus! LOGO" width="160px" height="45px">
+                <!-- <img class="d-block d-lg-none" src="./assets/images/HelloBus_light.png" alt="Hello, Bus! LOGO" width="124px" height="35px"> -->
+            </a>
+            <!-- 漢堡 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <span class="navbar-toggler-icon"></span> -->
+            <!-- <span class="material-icons-outlined text-white">
+                menu
+            </span> -->
+            <div class="burger burger1">
+                <div></div>
+            </div>
+            </button>
+            <!-- 選單內容 -->
+            <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+            <ul class="navbar-nav | position-absolute top-50 start-50 translate-middle">
+                <li class="nav-item | me-4">
+                    <a class="nav-link text-white | hvr-underline-from-center" aria-current="page" href="./bus.html">
+                        公車動態
+                    </a>
+                </li>
+                <li class="nav-item | me-4">
+                    <a class="nav-link text-white | hvr-underline-from-center" href="./station.html">
+                        附近站點
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white | hvr-underline-from-center" aria-current="page" href="./highwayBus.html">
+                        班表查詢
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white | hvr-underline-from-center" aria-current="page" href="./favorite.html">
+                        我的收藏
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="vw-100 vh-100">
+
+        <!-- 背景圖 -->
+        <div class="bg-circle overflow-hidden">
+            <img class="d-none d-md-block" src="./assets/images/picBgPC.jpg" alt="bg-pc">
+            <img class="d-block d-md-none" src="./assets/images/picBgmobile.jpg" alt="bg-mobile">
+            <!-- <div class="bg-img bg-cover w-100 h-100"></div> -->
+        </div>
+
+        <!-- Title -->
+        <div class="index_main w-100 h-100  | position-absolute top-50 start-50 translate-middle">
+            <div class="d-block d-lg-none | text-center | mt-20 mb-20">
+                <img class="mb-4" src="./assets/images/HelloBus_light.png" alt="Hello, Bus! LOGO" width="269px" height="84px">
+                <p class="index_main_title fz-4 text-white w-50 mx-auto | py-4 px-3">全台公車動態時刻查詢網</p>
+            </div>
+        </div>
+
+        <!-- 導覽 圓圈 icon -->
+        <ul class="index_nav | d-flex jc-c | position-absolute start-50 translate-middle">
+            <li class="nav-item | d-flex flex-column ai-c | d-flex flex-column ai-c | mx-2 mx-md-2">
+                <a class="nav-link mx-2 my-2" aria-current="page" href="./bus.html">
+                    <!-- <img src="./assets/images/bus_default.png" width="60px" alt=""> -->
+                    <div class="nav-link-bg position-relative">
+                        <i class="fas fa-bus fz-7 fz-md-9 text-white | position-absolute top-50 start-50 translate-middle"></i>
+                    </div>
+                </a>
+                <a class="nav-link text-fontDark fz-3 fz-md-4 fz-lg-5" aria-current="page" href="./bus.html">
+                    公車動態
+                </a>
+            </li>
+            <li class="nav-item | d-flex flex-column ai-c | mx-2 mx-md-2">
+                <a class="nav-link mx-2 my-2" aria-current="page" href="./station.html">
+                    <!-- <img src="./assets/images/bus_default.png" width="60px" alt=""> -->
+                    <div class="nav-link-bg position-relative">
+                        <i class="fas fa-map-marker-alt fz-7 fz-md-9 text-white | position-absolute top-50 start-50 translate-middle"></i>
+                    </div>
+                </a>
+                <a class="nav-link text-fontDark fz-3 fz-md-4 fz-lg-5" href="./station.html">
+                    附近站點
+                </a>
+            </li>
+            <li class="nav-item | d-flex flex-column ai-c | mx-2 mx-md-2">
+                <a class="nav-link mx-2 my-2" aria-current="page" href="./highwayBus.html">
+                    <!-- <img src="./assets/images/bus_default.png" width="60px" alt=""> -->
+                    <div class="nav-link-bg position-relative">
+                        <i class="fas fa-clock fz-7 fz-md-9 text-white | position-absolute top-50 start-50 translate-middle"></i>
+                    </div>
+                </a>
+                <a class="nav-link text-fontDark fz-3 fz-md-4 fz-lg-5" aria-current="page" href="./highwayBus.html">
+                    班表查詢
+                </a>
+            </li>
+            <li class="nav-item d-flex flex-column ai-c">
+                <a class="nav-link ms-2 my-2" aria-current="page" href="./favorite.html">
+                    <!-- <img src="./assets/images/bus_default.png" width="60px" alt=""> -->
+                    <div class="nav-link-bg position-relative">
+                        <i class="fas fa-heart fz-7 fz-md-9 text-white | position-absolute top-50 start-50 translate-middle"></i>
+                    </div>
+                </a>
+                <a class="nav-link text-fontDark fz-3 fz-md-4 fz-lg-5" aria-current="page" href="./favorite.html">
+                    我的收藏
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <!-- footer 頁尾 -->
+    <footer class="bg-primary fixed-bottom">
+        <div class="container | d-flex ai-c jc-c | py-5">
+            <!-- Copyright -->
+            <p class="h6 text-white | d-none d-lg-block">HelloBus © 2021 <span class="fw-light">Designer: Vum. Engineer: Sylvia-H.</span> All rights reserved.</p>
+            <p class="h6 text-white | d-block d-lg-none">HelloBus © 2021 All rights reserved.</p>
+        </div>
+    </footer>
+
+
+  
+    <!-- scripts -->
+      <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+      <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+      <!-- wicket -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.8/wicket.min.js" integrity="sha512-aaiN+QIXD0N9Id865vSDEfttZJV9v8ZGh7jXMnYI2zbZhkSYOulS4IH0u4pC61/KXT20UedYzL5xi5siIg6mlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <!-- mine -->
+    <script src="./assets/js/vendors.js"></script>
+    <script src="./assets/js/all.js"></script>
+  </body>
+
+</html>

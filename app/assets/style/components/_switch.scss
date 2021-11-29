@@ -1,0 +1,74 @@
+// 切換隱藏 & 顯示無障礙車輛
+.switch-barrier-free {
+    /* 設定開關鈕的長寬 */
+    position: relative;
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    
+    .switch-checkbox {
+        position: absolute;
+        display: none;
+    }
+    .switch-label {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 20px;
+        // box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+    .switch-txt {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+    }
+    .switch-txt::before,
+    .switch-txt::after {
+        display: block;
+        float: right;
+        width: 50%;
+        font-size: 13px;
+        color: #fff;
+        font-weight: bold;
+        box-sizing: border-box;
+        box-shadow: inset 2px 3px 6px rgba(0, 0, 0, 0.3);
+    }
+    /* 開關鈕底色(開啟時) */
+    .switch-txt::after {
+        content: attr(turnOn);
+        padding-left: -50px;
+        background: $secondary;
+        color: transparent;
+    }
+    /* 開關鈕底色(關閉時) */
+    .switch-txt::before {
+        content: attr(turnOff);
+        padding-right: 10px;
+        background: $light;
+        color: transparent;
+        text-align: right;
+    }
+    /* 開關鈕的顏色與大小 */
+    .switch-Round-btn {
+        position: absolute;
+        display: block;
+        width: 16px;
+        height: 16px;
+        margin: 2px;
+        background: #fff;
+        top: 0;
+        bottom: 0;
+        right: 31px;
+        border-radius: 13px;
+        box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease-in 0s;
+    }
+    .switch-checkbox:checked + .switch-label .switch-txt {
+        margin-left: 0;
+    }
+    .switch-checkbox:checked + .switch-label .switch-Round-btn{
+        background: #fff;
+        right: 0;
+    }
+}
