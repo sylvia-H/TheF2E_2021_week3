@@ -87,19 +87,19 @@
                 <!-- 選擇縣市 -->
                 <div class="col-12 col-lg-5 offset-lg-1 | mb-4 mb-lg-0">
                     <select id="select_city" class="form-select form-select-md | bg-inputLight text-fontDark text-center border | py-2 px-3" aria-label="form-select-sm">
-                        <option selected>請選擇縣市</option>
+                        <option selected>請先選擇縣市</option>
                     </select>
                 </div>
                 <!-- 選擇路線或手動輸入關鍵字 -->
-                <div class="col-12 col-lg-5">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control | bg-inputLight text-fontDark text-center border | py-2 px-3" aria-label="Text input" 
-                                placeholder="請先選擇路線 或 手動輸入關鍵字">
-                        <button class="btn btn-inputLight d-flex jc-c ai-c" type="button" id="button-addon2">
-                            <span class="material-icons">
-                                search
-                            </span>
-                        </button>
+                <div class="col-12 col-lg-5 mb-10">
+                    <div class="position-relative">
+                        <select id="select_route" 
+                                class="form-select form-select-md | bg-inputLight text-fontDark text-center border | py-2 px-3 | position-absolute" aria-label="form-select-sm">
+                            <option selected>路線</option>
+                        </select>
+                        <input id="search_route" type="text" 
+                                class="form-control | bg-inputLight text-fontDark text-center border | py-2 px-3 | position-absolute" aria-label="Text input" 
+                                placeholder="   選擇路線  或  手動輸入關鍵字">
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                         <p class="py-2 bg-primary text-white rounded-top20 text-center">
                             搜尋結果
                         </p>
-                        <div class="bus_searching text-center py-10 | d-none">
+                        <div class="bus_searching text-center py-10">
                             <img src="./assets/images/signPic_default.png" alt="findRoute">
                             <p class="text-dark">
                                 尋找您的公車路線
@@ -127,7 +127,7 @@
                                 很抱歉，找不到符合的路線
                             </p>
                         </div>
-                        <div class="bus_searchShow px-2 py-3">
+                        <div class="bus_searchShow px-2 py-3 d-none">
                             <div class="d-flex jc-fe | mx-6 mb-4">
                                 <p class="fz-4 text-dark me-3">僅顯示提供無障礙車輛之路線</p>
                                 <!-- 無障礙車輛切換按鈕 -->
@@ -139,8 +139,10 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="bus_searchResult overflow-auto px-5 fashion-scrollbar">
-                                <div class="w-100 rounded-4 shadow-sm | py-3 px-4 mb-4">
+                            <div class="bus_routeResult overflow-auto px-5 fashion-scrollbar">
+
+                                <!-- 路線樣板 -->
+                                <!-- <div class="w-100 rounded-4 shadow-sm | py-3 px-4 mb-4">
                                     <div class="d-flex jc-sb | mb-2">
                                         <h4 class="text-warning">5053</h4>
                                         <span class="material-icons-outlined text-dark">
@@ -166,61 +168,8 @@
                                             桃園
                                         </p>
                                     </div>
-                                </div>
-                                <div class="w-100 rounded-4 shadow-sm | py-3 px-4 mb-4">
-                                    <div class="d-flex jc-sb | mb-2">
-                                        <h4 class="text-warning">5053</h4>
-                                        <span class="material-icons-outlined text-dark">
-                                            favorite_border
-                                        </span>
-                                        <span class="material-icons text-danger d-none">
-                                            favorite
-                                        </span>
-                                    </div>
-                                    <div class="d-flex jc-sb">
-                                        <p class="d-flex ai-c text-fontDark">
-                                            <span class="bus_searchResult_routeStart">
-                                                桃園
-                                            </span>
-                                            <span class="material-icons mx-2">
-                                                sync_alt
-                                            </span>
-                                            <span class="bus_searchResult_routeEnd">
-                                                龍潭(經九龍里)
-                                            </span>
-                                        </p>
-                                        <p class="text-dark">
-                                            桃園
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="w-100 rounded-4 shadow-sm | py-3 px-4 mb-4">
-                                    <div class="d-flex jc-sb | mb-2">
-                                        <h4 class="text-warning">5053</h4>
-                                        <span class="material-icons-outlined text-dark">
-                                            favorite_border
-                                        </span>
-                                        <span class="material-icons text-danger d-none">
-                                            favorite
-                                        </span>
-                                    </div>
-                                    <div class="d-flex jc-sb">
-                                        <p class="d-flex ai-c text-fontDark">
-                                            <span class="bus_searchResult_routeStart">
-                                                桃園
-                                            </span>
-                                            <span class="material-icons mx-2">
-                                                sync_alt
-                                            </span>
-                                            <span class="bus_searchResult_routeEnd">
-                                                龍潭(經九龍里)
-                                            </span>
-                                        </p>
-                                        <p class="text-dark">
-                                            桃園
-                                        </p>
-                                    </div>
-                                </div>
+                                </div> -->
+
                             </div>
 
                         </div>
@@ -409,8 +358,18 @@
     <script src="./assets/js/all.js"></script>
 
     <script>
+        const selectCity = document.getElementById('select_city');
+        const searchRoute = document.getElementById('search_Route');
+        const selectRoute = document.getElementById('select_Route');
+
         // 頁面初始渲染：取得縣市名稱資料
         window.onload = getCity();
+
+        // 監聽搜尋欄
+        selectCity.addEventListener('change',(e)=>{
+            getRoute(e.target.value);
+        });
+        
     </script>
 
     </body>

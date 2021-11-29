@@ -40651,8 +40651,12 @@ select::-webkit-scrollbar {
   height: 60vh;
 }
 
-.bus_searchResult {
+.bus_routeResult {
   height: 80%;
+}
+
+#search_route {
+  width: 90%;
 }
 
 /*# sourceMappingURL=all.css.map */
