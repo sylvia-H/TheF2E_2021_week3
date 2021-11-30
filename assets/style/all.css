@@ -40517,12 +40517,12 @@ select::-webkit-scrollbar {
 }
 
 .bg-circle {
-  width: 140vw;
-  height: 200vh;
+  width: 130vw;
+  height: 160vh;
   border-radius: 50% 50%;
   position: absolute;
-  top: -125vh;
-  left: -20vw;
+  top: -85vh;
+  left: -15vw;
 }
 
 @media screen and (max-width: 768px) {
@@ -40538,15 +40538,15 @@ select::-webkit-scrollbar {
 
 .bg-circle img {
   position: absolute;
-  width: 120vw;
-  left: 10vw;
+  width: 100vw;
+  left: 0;
   bottom: -30vh;
 }
 
 @media screen and (max-width: 992px) {
   .bg-circle img {
     width: 100vw;
-    left: 20vw;
+    left: 0vw;
     bottom: -10vh;
   }
 }
