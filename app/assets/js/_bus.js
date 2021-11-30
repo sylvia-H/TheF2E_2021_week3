@@ -45,13 +45,13 @@ function getRoute(city){
 
             const sortData = routeData.sort(compareName);
 
-            const selectRoute = document.getElementById('select_route');
-            let str = "";
-            sortData.forEach(el=>{
-                str+=`<option value="${el.RouteUID}">${el.RouteName.Zh_tw}</option>`
-            });
-            selectRoute.innerHTML=str;
-            console.log(routeData);
+            // const selectRoute = document.getElementById('select_route');
+            // let str = "";
+            // sortData.forEach(el=>{
+            //     str+=`<option value="${el.RouteUID}">${el.RouteName.Zh_tw}</option>`
+            // });
+            // selectRoute.innerHTML=str;
+            // console.log(routeData);
             
             showRouteResult(sortData);
         })
@@ -66,7 +66,7 @@ function showRouteResult(data){
     const busSearchNone = document.querySelector('.bus_searchNone');
     const busRouteResult = document.querySelector('.bus_routeResult');
     
-    if(!data) {
+    if(!data || data.length === 0) {
         busSearching.classList.add('d-none');
         busSearchNone.classList.remove('d-none');
     } else {
@@ -110,4 +110,67 @@ function showRouteResult(data){
         busSearchShow.classList.remove('d-none');
     }
 
+}
+
+// 關鍵字比對 search_route
+function findMatch(keyword){
+    const regExp = new RegExp(keyword,'gi');
+    console.log(regExp);
+    return routeData.filter(el=>el.RouteName.Zh_tw.match(regExp) || el.DepartureStopNameZh.match(regExp) || el.DestinationStopNameZh.match(regExp));
+}
+
+// 渲染出比對結果
+function renderRoute(keyword){
+    const busSearchShow = document.querySelector('.bus_searchShow');
+    const busSearching = document.querySelector('.bus_searching');
+    const busSearchNone = document.querySelector('.bus_searchNone');
+    const busRouteResult = document.querySelector('.bus_routeResult');
+
+    const cacheData = findMatch(keyword);
+
+    let str = "";
+
+    if(!cacheData || cacheData.length === 0) {
+        console.log('NoData');
+        busSearching.classList.add('d-none');
+        busSearchShow.classList.add('d-none');
+        busSearchNone.classList.remove('d-none');
+    } else {
+        cacheData.forEach(el=>{
+            str+=`
+            <div class="w-100 rounded-4 shadow-sm | py-3 px-4 mb-4">
+                <div class="d-flex jc-sb | mb-2">
+                    <h4 class="text-warning">${el.RouteName.Zh_tw}</h4>
+                    <span class="material-icons-outlined text-dark">
+                        favorite_border
+                    </span>
+                    <span class="material-icons text-danger d-none">
+                        favorite
+                    </span>
+                </div>
+                <div class="d-flex jc-sb">
+                    <p class="d-flex ai-c text-fontDark fz-4">
+                        <span class="bus_searchResult_routeStart">
+                            ${el.DepartureStopNameZh}
+                        </span>
+                        <span class="material-icons mx-2">
+                            sync_alt
+                        </span>
+                        <span class="bus_searchResult_routeEnd">
+                            ${el.DestinationStopNameZh}
+                        </span>
+                    </p>
+                    <p class="text-dark">
+                        ${el.Operators[0].OperatorName.Zh_tw}
+                    </p>
+                </div>
+            </div>`
+        });
+    
+        busRouteResult.innerHTML = str;
+
+        busSearching.classList.add('d-none');
+        busSearchNone.classList.add('d-none');
+        busSearchShow.classList.remove('d-none');
+    }
 }

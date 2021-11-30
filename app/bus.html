@@ -91,16 +91,10 @@
                     </select>
                 </div>
                 <!-- 選擇路線或手動輸入關鍵字 -->
-                <div class="col-12 col-lg-5 mb-10">
-                    <div class="position-relative">
-                        <select id="select_route" 
-                                class="form-select form-select-md | bg-inputLight text-fontDark text-center border | py-2 px-3 | position-absolute" aria-label="form-select-sm">
-                            <option selected>路線</option>
-                        </select>
-                        <input id="search_route" type="text" 
-                                class="form-control | bg-inputLight text-fontDark text-center border | py-2 px-3 | position-absolute" aria-label="Text input" 
-                                placeholder="   選擇路線  或  手動輸入關鍵字">
-                    </div>
+                <div class="col-12 col-lg-5 mb-4">
+                    <input id="search_route" type="text" 
+                            class="form-control | bg-inputLight text-fontDark text-center border | py-2 px-3 w-100" aria-label="Text input" 
+                            placeholder="   選擇路線  或  手動輸入關鍵字">
                 </div>
             </div>
         </div>
@@ -245,7 +239,7 @@
                             <input type="button" 
                                     class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
                                     value="0">
-                            <div class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3">
+                            <div id="btn-backspace" class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3">
                                 <span class="material-icons">
                                     backspace
                                 </span>
@@ -358,9 +352,13 @@
     <script src="./assets/js/all.js"></script>
 
     <script>
+        // 搜尋框
         const selectCity = document.getElementById('select_city');
-        const searchRoute = document.getElementById('search_Route');
-        const selectRoute = document.getElementById('select_Route');
+        const searchRoute = document.getElementById('search_route');
+        // 線上鍵盤
+        const busBoard = document.querySelectorAll('.bus_board input');
+        const moreRouteModal = document.querySelectorAll('#moreRouteModal input');
+        const btnBackspace = document.getElementById('btn-backspace');
 
         // 頁面初始渲染：取得縣市名稱資料
         window.onload = getCity();
@@ -368,6 +366,34 @@
         // 監聽搜尋欄
         selectCity.addEventListener('change',(e)=>{
             getRoute(e.target.value);
+        });
+
+        // 手動輸入關鍵字比對
+        searchRoute.addEventListener('keyup',(e)=>{
+            renderRoute(e.target.value);
+        });
+        
+        // 監聽線上鍵盤按鈕
+        busBoard.forEach(el=>{
+            el.addEventListener('click',(e)=>{
+                searchRoute.value+=e.target.value;
+                console.log(e.target.value);
+                renderRoute(searchRoute.value);
+            });
+        });
+        moreRouteModal.forEach(el=>{
+            el.addEventListener('click',(e)=>{
+                searchRoute.value+=e.target.value;
+                console.log(e.target.value);
+                renderRoute(searchRoute.value);
+            });
+        });
+
+        //監聽按鈕：刪除輸入框文字
+        btnBackspace.addEventListener('click',()=>{
+            let searchWord = searchRoute.value;
+            searchRoute.value = searchWord.slice(0, searchWord.length -1);
+            renderRoute(searchRoute.value);
         });
         
     </script>
