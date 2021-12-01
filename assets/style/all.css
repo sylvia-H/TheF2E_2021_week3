@@ -40665,4 +40665,29 @@ select::-webkit-scrollbar {
   width: 90%;
 }
 
+.resultPanel {
+  border-radius: 20px;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 992px) {
+  .resultPanel {
+    border-radius: 0;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .bus_board {
+    -webkit-box-shadow: 0rem -0.5rem 1rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0rem -0.5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+}
+
+.bus_board .arrowDown {
+  top: 1.5rem;
+}
+
 /*# sourceMappingURL=all.css.map */

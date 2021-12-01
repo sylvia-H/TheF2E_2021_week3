@@ -75,13 +75,17 @@
     <section class="bg-primary rounded-bottom20 w-100">
         <div class="container">
             <!-- 麵包屑 -->
-            <h1 class="fz-4 fw-normal text-white | d-flex ai-c">
-                首頁 
-                <span class="material-icons">
+            <div class="d-flex ai-c">
+                <a href="./index.html" class="fz-4 fw-normal text-white">
+                    首頁
+                </a> 
+                <span class="material-icons fz-4 fw-normal text-white">
                     chevron_right
                 </span> 
-                公車動態
-            </h1>
+                <a href="./bus.html" class="fz-4 fw-normal text-white">
+                    公車動態
+                </a>
+            </div>
             <!-- 搜尋欄 -->
             <div class="row py-6">
                 <!-- 選擇縣市 -->
@@ -105,8 +109,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-5 offset-lg-1 | mb-6">
-                    <div class="rounded-20 shadow">
-                        <p class="py-2 bg-primary text-white rounded-top20 text-center">
+                    <div class="resultPanel">
+                        <p class="d-none d-lg-block | py-2 bg-primary text-white rounded-top20 text-center">
                             搜尋結果
                         </p>
                         <div class="bus_searching text-center py-10">
@@ -170,8 +174,8 @@
                     </div>
                 </div>
 
-                <!-- 路線查詢鍵盤 -->
-                <div class="bus_board col-12 col-lg-5">
+                <!-- 路線查詢鍵盤（桌機版） -->
+                <div class="bus_board col-12 col-lg-5 | d-none d-lg-block">
                     <div class="rounded-20 shadow | py-5 px-8">
                         <div class="row mb-2">
                             <input type="button" 
@@ -251,6 +255,90 @@
         </div>
     </section>
 
+    
+    <!-- 路線查詢鍵盤（手機版） -->
+    <div class="bus_board | d-block d-lg-none | rounded-top20 | pt-10 px-8 | position-relative">
+        <div class="arrowDown | position-absolute start-50 translate-middle">
+            <span class="material-icons">
+                arrow_drop_down
+            </span>
+        </div>
+        <div class="bus_board_panel | mb-5">
+            <div class="row mb-2">
+                <input type="button" 
+                        class="col rounded-4 btn btn-red text-white d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="紅">
+                <input type="button"
+                        class="col rounded-4 btn btn-blue text-white d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="藍">
+                <input type="button"
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="1">
+                <input type="button"
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="2">
+                <input type="button"
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3"
+                        value="3">
+            </div>
+            <div class="row mb-2">
+                <input type="button" 
+                        class="col rounded-4 btn btn-brown text-white d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="棕">
+                <input type="button" 
+                        class="col rounded-4 btn btn-green text-white d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="綠">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="4">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="5">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3"
+                        value="6">
+            </div>
+            <div class="row mb-2">
+                <input type="button" 
+                        class="col rounded-4 btn btn-info text-white d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="黃">
+                <input type="button" 
+                        class="col rounded-4 btn btn-orange text-white d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="橘">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="7">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="8">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3"
+                        value="9">
+            </div>
+            <div class="row">
+                <input type="button" 
+                        class="col rounded-4 btn btn-white text-fontDark border border-2 d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="F">
+                <!-- Button trigger modal -->
+                <button type="button" class="col rounded-4 btn btn-fontLight text-white d-flex jc-c ai-c | px-3 py-3 me-2" 
+                        data-bs-toggle="modal" data-bs-target="#moreRouteModal">
+                    更多
+                </button>
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="C">
+                <input type="button" 
+                        class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3 me-2"
+                        value="0">
+                <div id="btn-backspace" class="col rounded-4 btn btn-inputLight text-fontDark d-flex jc-c ai-c | px-3 py-3">
+                    <span class="material-icons">
+                        backspace
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -329,7 +417,7 @@
 
     
     <!-- footer 頁尾 -->
-    <footer class="bg-primary fixed-bottom">
+    <footer class="bg-primary fixed-bottom d-none d-lg-block">
         <div class="container | d-flex ai-c jc-c | py-5">
             <!-- Copyright -->
             <p class="h6 text-white | d-none d-lg-block">HelloBus © 2021 <span class="fw-light">Designer: Vum. Engineer: Sylvia-H.</span> All rights reserved.</p>
@@ -359,6 +447,8 @@
         const busBoard = document.querySelectorAll('.bus_board input');
         const moreRouteModal = document.querySelectorAll('#moreRouteModal input');
         const btnBackspace = document.getElementById('btn-backspace');
+        const arrowDown = document.querySelector('.arrowDown');
+        const bus_board_panel = document.querySelector('.bus_board_panel');
 
         // 頁面初始渲染：取得縣市名稱資料
         window.onload = getCity();
@@ -394,6 +484,13 @@
             let searchWord = searchRoute.value;
             searchRoute.value = searchWord.slice(0, searchWord.length -1);
             renderRoute(searchRoute.value);
+        });
+
+        //監聽鍵盤下拉按鈕
+        arrowDown.addEventListener('click',()=>{
+            bus_board_panel.classList.toggle('d-none');
+            // 自動捲到頁面底部
+            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
         });
         
     </script>
